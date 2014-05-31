@@ -92,7 +92,7 @@ urlpatterns = patterns(
 )
 ```
 
-I think you simple understand the difference of ways :)
+I think you understand the difference of ways :)
 
 #### Routing must be simple! ;-)
 
