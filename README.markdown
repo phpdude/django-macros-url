@@ -17,6 +17,14 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 
 If you want to offer more macros by default, you can fork and make pull request.
 
+### Installation
+
+You can install library with pipy like a charm.
+
+```
+pip install django-macros-url
+```
+
 ### Usage
 
 Django Macros Urls used same way as django standart urls. You just import this and declare your patterns with macros.
