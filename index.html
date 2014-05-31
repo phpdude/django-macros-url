@@ -50,6 +50,14 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 <p>If you want to offer more macros by default, you can fork and make pull request.</p>
 
 <h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>You can install library with pipy like a charm.</p>
+
+<pre><code>pip install django-macros-url
+</code></pre>
+
+<h3>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
 
 <p>Django Macros Urls used same way as django standart urls. You just import this and declare your patterns with macros.</p>
@@ -96,11 +104,11 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
     <span class="s">'yourapp.views'</span><span class="p">,</span>
     <span class="n">url</span><span class="p">(</span><span class="s">'^:category_slug/$'</span><span class="p">,</span> <span class="s">'category'</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^:category_slug/:product_slug/$'</span><span class="p">,</span> <span class="s">'category_product'</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^:category_slug/:product_slug/:variant_id$'</span><span class="p">,</span> <span class="s">'category_product_variant'</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^news/$'</span><span class="p">,</span> <span class="s">'news'</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^news/:year/:month/:day$'</span><span class="p">,</span> <span class="s">'news_date'</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^news/:slug$'</span><span class="p">,</span> <span class="s">'news_entry'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">':category_slug/:product_slug/'</span><span class="p">,</span> <span class="s">'category_product'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">':category_slug/:product_slug/:variant_id'</span><span class="p">,</span> <span class="s">'category_product_variant'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">'news/'</span><span class="p">,</span> <span class="s">'news'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">'news/:year/:month/:day$'</span><span class="p">,</span> <span class="s">'news_date'</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">'news/:slug$'</span><span class="p">,</span> <span class="s">'news_entry'</span><span class="p">),</span>
     <span class="n">url</span><span class="p">(</span><span class="s">'^order/:id$'</span><span class="p">,</span> <span class="s">'order'</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -124,7 +132,7 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 <span class="p">)</span>
 </pre></div>
 
-<p>I think you simple understand the difference of ways :)</p>
+<p>I think you understand the difference of ways :)</p>
 
 <h4>
 <a name="routing-must-be-simple--" class="anchor" href="#routing-must-be-simple--"><span class="octicon octicon-link"></span></a>Routing must be simple! ;-)</h4>
