@@ -14,7 +14,7 @@ setup(
     author='Alexandr Shurigin',
     author_email='alexandr.shurigin@gmail.com',
     description='Macros Url library for django',
-    license='BSD',
+    license='MIT',
     keywords='django macros url pattern regex',
     url='https://github.com/phpdude/django-macros-url',
     packages=find_packages(exclude=['tests']),
