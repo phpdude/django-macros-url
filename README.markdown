@@ -71,11 +71,11 @@ from project.apps.macrosurl import url
 urlpatterns = patterns(
     'yourapp.views',
     url('^:category_slug/$', 'category'),
-    url('^:category_slug/:product_slug/$', 'category_product'),
-    url('^:category_slug/:product_slug/:variant_id$', 'category_product_variant'),
-    url('^news/$', 'news'),
-    url('^news/:year/:month/:day$', 'news_date'),
-    url('^news/:slug$', 'news_entry'),
+    url(':category_slug/:product_slug/', 'category_product'),
+    url(':category_slug/:product_slug/:variant_id', 'category_product_variant'),
+    url('news/', 'news'),
+    url('news/:year/:month/:day$', 'news_date'),
+    url('news/:slug$', 'news_entry'),
     url('^order/:id$', 'order'),
 )
 ```
