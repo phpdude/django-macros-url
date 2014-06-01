@@ -19,7 +19,7 @@ If you want to offer more macros by default, you can fork and make pull request.
 
 ### Installation
 
-You can install library with pipy like a charm.
+You can install library with pypi like a charm.
 
 ```
 pip install django-macros-url
