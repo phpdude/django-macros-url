@@ -74,8 +74,8 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
     <span class="s">'yourapp.views'</span><span class="p">,</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^:myhash/$'</span><span class="p">,</span> <span class="s">'myhash_main'</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">'^news/:news_myhash/$'</span><span class="p">,</span> <span class="s">'myhash_news'</span><span class="p">),</span>
+    <span class="n">macrosurl</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="s">'^:myhash/$'</span><span class="p">,</span> <span class="s">'myhash_main'</span><span class="p">),</span>
+    <span class="n">macrosurl</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="s">'^news/:news_myhash/$'</span><span class="p">,</span> <span class="s">'myhash_news'</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -99,8 +99,7 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 <p>Macro Url example urls.py file</p>
 
 <div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span>
-<span class="kn">from</span> <span class="nn">project.apps.portal</span> <span class="kn">import</span> <span class="n">views</span>
-<span class="kn">from</span> <span class="nn">project.apps.macrosurl</span> <span class="kn">import</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">macrosurl</span> <span class="kn">import</span> <span class="n">url</span>
 
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
@@ -118,8 +117,7 @@ uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-
 <p>Django way urls example</p>
 
 <div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">patterns</span>
-<span class="kn">from</span> <span class="nn">project.apps.portal</span> <span class="kn">import</span> <span class="n">views</span>
-<span class="kn">from</span> <span class="nn">project.apps.macrosurl</span> <span class="kn">import</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">macrosurl</span> <span class="kn">import</span> <span class="n">url</span>
 
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span>
