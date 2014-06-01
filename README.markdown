@@ -40,8 +40,8 @@ macrosurl.register('myhash', '[a-f0-9]{9}')
 
 urlpatterns = patterns(
     'yourapp.views',
-    url('^:myhash/$', 'myhash_main'),
-    url('^news/:news_myhash/$', 'myhash_news'),
+    macrosurl.url('^:myhash/$', 'myhash_main'),
+    macrosurl.url('^news/:news_myhash/$', 'myhash_news'),
 )
 ```
 
@@ -64,8 +64,7 @@ Macro Url example urls.py file
 
 ```python
 from django.conf.urls import patterns
-from project.apps.portal import views
-from project.apps.macrosurl import url
+from macrosurl import url
 
 
 urlpatterns = patterns(
@@ -84,8 +83,7 @@ Django way urls example
 
 ```python
 from django.conf.urls import patterns
-from project.apps.portal import views
-from project.apps.macrosurl import url
+from macrosurl import url
 
 
 urlpatterns = patterns(
