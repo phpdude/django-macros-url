@@ -68,6 +68,7 @@ class TestRegexCompilation(unittest.TestCase):
     def test_includes_end(self):
         self.assertEqual(str(url('users/:slug', include('tests'))._regex), '^users/(?P<slug>[\\w-]+)')
         self.assertEqual(str(url('users/:slug', include('tests', namespace='1'))._regex), '^users/(?P<slug>[\\w-]+)')
+        self.assertEqual(str(url('users/:slug', 'tests')._regex), '^users/(?P<slug>[\\w-]+)$')
 
 
 class TestRegexUrlResolving(unittest.TestCase):
