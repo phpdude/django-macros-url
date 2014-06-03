@@ -2,7 +2,7 @@ import re
 
 from django.conf.urls import url as baseurl
 
-VERSION = (0, 1, 0)
+VERSION = (0, 1, 1)
 
 _macros_library = {
     'id': r'\d+',
@@ -27,14 +27,18 @@ def regex_group(macro, pattern):
     return '(?P<%s>%s)' % (macro, pattern)
 
 
-def normalize_pattern(url):
-    return '^%s$' % url.lstrip("^ \n").rstrip("$ \n")
+def normalize_pattern(url, end_dollar=True):
+    pattern = '^%s$'
+    if not end_dollar:
+        pattern = '^%s'
+
+    return pattern % url.lstrip("^ \n").rstrip("$ \n")
 
 
 class MacroUrlPattern(object):
-    def __init__(self, pattern):
+    def __init__(self, pattern, end_dollar=True):
         self.pattern = pattern
-
+        self.end_dollar = end_dollar
 
     def compile(self):
         pattern = self.pattern
@@ -48,7 +52,7 @@ class MacroUrlPattern(object):
                         pattern = pattern.replace(match, regex_group(macro, _macros_library[_macro]))
                         continue
 
-        return normalize_pattern(pattern)
+        return normalize_pattern(pattern, self.end_dollar)
 
     @property
     def compiled(self):
@@ -65,4 +69,8 @@ class MacroUrlPattern(object):
 
 
 def url(regex, view, kwargs=None, name=None, prefix=''):
-    return baseurl(MacroUrlPattern(regex), view, kwargs=kwargs, name=name, prefix=prefix)
+    end_dollar = True
+    if isinstance(view, tuple) and len(view) == 3:
+        end_dollar = False
+
+    return baseurl(MacroUrlPattern(regex, end_dollar=end_dollar), view, kwargs=kwargs, name=name, prefix=prefix)

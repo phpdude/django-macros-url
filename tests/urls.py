@@ -2,6 +2,7 @@ import unittest
 import uuid
 
 from django.conf import settings
+from django.conf.urls import include
 
 from macrosurl import MacroUrlPattern, url
 
@@ -62,6 +63,11 @@ class TestRegexCompilation(unittest.TestCase):
     def test_strongurl(self):
         self.assertEqual(MacroUrlPattern('orders/:date/:uuid/products/:slug/:variant_id').compiled,
                          '^orders/(?P<date>\\d{4}-(0?([1-9])|10|11|12)-((0|1|2)?([1-9])|[1-3]0|31))/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})/products/(?P<slug>[\\w-]+)/(?P<variant_id>\\d+)$')
+
+    # noinspection PyProtectedMember
+    def test_includes_end(self):
+        self.assertEqual(str(url('users/:slug', include('tests'))._regex), '^users/(?P<slug>[\\w-]+)')
+        self.assertEqual(str(url('users/:slug', include('tests', namespace='1'))._regex), '^users/(?P<slug>[\\w-]+)')
 
 
 class TestRegexUrlResolving(unittest.TestCase):
