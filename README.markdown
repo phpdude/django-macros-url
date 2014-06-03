@@ -4,6 +4,8 @@ Django Macros Url makes it easy to write (and read) url patterns in your django 
 
 You can combine your prefixes with macro names with underscope, for example you can use macro `:slug` and `:product_slug`. They both will be compiled to same regex pattern with their group names of course. Multiple underscopes accepted too.
 
+<img src="https://travis-ci.org/phpdude/django-macros-url.svg?branch=master" />
+
 ### Supported macros by default
 
 ```

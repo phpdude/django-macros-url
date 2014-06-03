@@ -1,8 +1,8 @@
-import unittest
 import uuid
 
 from django.conf import settings
 from django.conf.urls import include
+from django.utils import unittest
 
 from macrosurl import MacroUrlPattern, url
 
