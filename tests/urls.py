@@ -36,6 +36,14 @@ class TestRegexCompilation(unittest.TestCase):
         self.assertEqual(MacroUrlPattern('product/:id/:product_id/:news_id').compiled,
                          '^product/(?P<id>\d+)/(?P<product_id>\d+)/(?P<news_id>\d+)$')
 
+    def test_pk(self):
+        self.assertEqual(MacroUrlPattern('page/:pk').compiled, '^page/(?P<pk>\d+)$')
+        self.assertEqual(MacroUrlPattern('product/:product_pk').compiled, '^product/(?P<product_pk>\d+)$')
+        self.assertEqual(MacroUrlPattern('product/:pk/:product_pk').compiled,
+                         '^product/(?P<pk>\d+)/(?P<product_pk>\d+)$')
+        self.assertEqual(MacroUrlPattern('product/:pk/:product_pk/:news_pk').compiled,
+                         '^product/(?P<pk>\d+)/(?P<product_pk>\d+)/(?P<news_pk>\d+)$')
+
     def test_slug(self):
         self.assertEqual(MacroUrlPattern('page/:slug').compiled, '^page/(?P<slug>[\w-]+)$')
         self.assertEqual(MacroUrlPattern('page/:category_slug/:slug').compiled,

@@ -1,4 +1,4 @@
-# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.1 - Routing must be simple as possible
+# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.2 - Routing must be simple as possible
 
 Django Macros Url makes it easy to write (and read) url patterns in your django applications by using macros.
 

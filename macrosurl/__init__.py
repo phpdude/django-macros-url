@@ -2,10 +2,11 @@ import re
 
 from django.conf.urls import url as baseurl
 
-VERSION = (0, 1, 1)
+VERSION = (0, 1, 2)
 
 _macros_library = {
     'id': r'\d+',
+    'pk': r'\d+',
     'slug': r'[\w-]+',
     'year': r'\d{4}',
     'month': r'(0?([1-9])|10|11|12)',
