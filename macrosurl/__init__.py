@@ -1,8 +1,6 @@
 import re
 
-from django.conf.urls import url as baseurl
-
-VERSION = (0, 1, 2)
+VERSION = (0, 1, 3)
 
 _macros_library = {
     'id': r'\d+',
@@ -70,6 +68,8 @@ class MacroUrlPattern(object):
 
 
 def url(regex, view, kwargs=None, name=None, prefix=''):
+    from django.conf.urls import url as baseurl
+
     end_dollar = True
     if isinstance(view, tuple) and len(view) == 3:
         end_dollar = False

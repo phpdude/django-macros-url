@@ -1,3 +1,8 @@
+v0.1.3
+------
+
+macrosurl.__init__ django import fix to allow install macros-url when django is not installed yet.
+
 v0.1.2
 ------
 
