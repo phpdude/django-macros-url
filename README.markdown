@@ -1,8 +1,8 @@
-# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.3 - Routing must be simple as possible
+# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.4 - Routing must be simple as possible
 
 Django Macros Url makes it easy to write (and read) url patterns in your django applications by using macros.
 
-You can combine your prefixes with macro names with underscope, for example you can use macro `:slug` and `:product_slug`. They both will be compiled to same regex pattern with their group names of course. Multiple underscopes accepted too.
+You can combine your prefixes with macro names with underscore, for example you can use macro `:slug` and `:product_slug`. They both will be compiled to same regex pattern with their group names of course. Multiple underscores accepted too.
 
 [![Build Status](https://travis-ci.org/phpdude/django-macros-url.svg?branch=master)](https://travis-ci.org/phpdude/django-macros-url)
 
@@ -76,8 +76,8 @@ urlpatterns = patterns(
     url(':category_slug/:product_slug/', 'category_product'),
     url(':category_slug/:product_slug/:variant_id', 'category_product_variant'),
     url('news/', 'news'),
-    url('news/:year/:month/:day$', 'news_date'),
-    url('news/:slug$', 'news_entry'),
+    url('news/:year/:month/:day', 'news_date'),
+    url('news/:slug', 'news_entry'),
     url('^order/:id$', 'order'),
 )
 ```
@@ -105,8 +105,14 @@ I think you understand the difference of ways :)
 
 #### Routing must be simple! ;-)
 
-I think real raw url regexp patterns need in 1% case only. Prefer simple way to write (and read, this is important) fancy clean urls.
+I think real raw url regexp patterns needed in 1% case only. Prefer simple way to write (and read, this is important) fancy clean urls.
 
 ### Contributor
 
 Alexandr Shurigin (aka [phpdude](https://github.com/phpdude/))
+
+### Additionals
+
+Sorry for my english level :(
+
+You are welcome fix readme to good english by pull request! Thank you.

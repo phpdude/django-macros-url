@@ -1,6 +1,6 @@
 import re
 
-VERSION = (0, 1, 3)
+VERSION = (0, 1, 4)
 
 _macros_library = {
     'id': r'\d+',
