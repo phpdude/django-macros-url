@@ -66,11 +66,11 @@ class TestRegexCompilation(unittest.TestCase):
 
     def test_uid(self):
         self.assertEqual(MacroUrlPattern('invoice/:uuid').compiled,
-                         '^invoice/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})$')
+                         '^invoice/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})$')
 
     def test_strongurl(self):
         self.assertEqual(MacroUrlPattern('orders/:date/:uuid/products/:slug/:variant_id').compiled,
-                         '^orders/(?P<date>\\d{4}-(0?([1-9])|10|11|12)-((0|1|2)?([1-9])|[1-3]0|31))/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})/products/(?P<slug>[\\w-]+)/(?P<variant_id>\\d+)$')
+                         '^orders/(?P<date>\\d{4}-(0?([1-9])|10|11|12)-((0|1|2)?([1-9])|[1-3]0|31))/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})/products/(?P<slug>[\\w-]+)/(?P<variant_id>\\d+)$')
 
     # noinspection PyProtectedMember
     def test_includes_end(self):
@@ -130,3 +130,10 @@ class TestRegexUrlResolving(unittest.TestCase):
         self.assertIsNone(url("invoice/:uuid", 'view').resolve('invoice/123123-123123-1231231-1231312-3-1312312-'))
         for i in range(1, 1000):
             self.assertIsNotNone(url("invoice/:uuid", 'view').resolve('invoice/%s' % uuid.uuid4()))
+
+    def test_no_match_for_invalid_uuid(self):
+        """
+        UUID with invalid version.  The allowed versions are 1, 2, 4 and 5
+        xxxxxxxx-xxxx-Vxxx-xxx-xxxxxxxxxxxx
+        """
+        self.assertIsNone(url("invoice/:uuid", 'view').resolve('invoice/3e41b04d-0978-9027-86c2-aa90c63ecb54'))
