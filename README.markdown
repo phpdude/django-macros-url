@@ -1,4 +1,4 @@
-# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.4 - Routing must be simple as possible
+# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.5 - Routing must be simple as possible
 
 Django Macros Url makes it easy to write (and read) url patterns in your django applications by using macros.
 
@@ -15,7 +15,7 @@ month - (0?([1-9])|10|11|12)
 day - ((0|1|2)?([1-9])|[1-3]0|31)
 id - \d+
 pk - \d+
-uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}
+uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}
 ```
 
 If you want to offer more macros by default, you can fork and make pull request.
