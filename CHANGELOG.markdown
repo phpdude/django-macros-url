@@ -1,3 +1,13 @@
+v0.1.6
+------
+
+Tests updated to support Django1.8. Travis configuration updated too. Small cleanups.
+
+v0.1.5
+------
+
+Add uuid version to uuid regex
+
 v0.1.4
 ------
 

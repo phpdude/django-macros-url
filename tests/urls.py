@@ -81,59 +81,64 @@ class TestRegexCompilation(unittest.TestCase):
 
 class TestRegexUrlResolving(unittest.TestCase):
     def setUp(self):
+        self.view = 'tests.views.view'
+
         if not settings.configured:
             settings.configure(USE_I18N=False)
 
     def test_id(self):
-        self.assertIsNone(url('product/:id', 'view').resolve('product/test'))
-        self.assertIsNotNone(url('product/:id', 'view').resolve('product/10'))
-        self.assertEqual(url('product/:id', 'view').resolve('product/10').kwargs['id'], '10')
-        self.assertEqual(url('product/:product_id', 'view').resolve('product/10').kwargs['product_id'], '10')
+        self.assertIsNone(url('product/:id', self.view).resolve('product/test'))
+        self.assertIsNotNone(url('product/:id', self.view).resolve('product/10'))
+        self.assertEqual(url('product/:id', self.view).resolve('product/10').kwargs['id'], '10')
+        self.assertEqual(url('product/:product_id', self.view).resolve('product/10').kwargs['product_id'],
+                         '10')
 
     def test_slug(self):
-        self.assertIsNone(url('product/:slug', 'view').resolve('product/test/ouch'))
-        self.assertIsNotNone(url('product/:slug', 'view').resolve('product/test'))
-        self.assertIsNotNone(url('product/:slug/:other_slug', 'view').resolve('product/test/other'))
+        self.assertIsNone(url('product/:slug', self.view).resolve('product/test/ouch'))
+        self.assertIsNotNone(url('product/:slug', self.view).resolve('product/test'))
+        self.assertIsNotNone(url('product/:slug/:other_slug', self.view).resolve('product/test/other'))
 
     def test_year(self):
-        self.assertIsNone(url('news/:year', 'view').resolve('news/last'))
+        self.assertIsNone(url('news/:year', self.view).resolve('news/last'))
         for y in range(1970, 2025):
-            self.assertIsNotNone(url('news/:year', 'view').resolve('news/%s' % y))
-        self.assertIsNone(url('news/:year/last', 'view').resolve('news/2014/other'))
-        self.assertIsNotNone(url('news/:year/last', 'view').resolve('news/2014/last'))
+            self.assertIsNotNone(url('news/:year', self.view).resolve('news/%s' % y))
+        self.assertIsNone(url('news/:year/last', self.view).resolve('news/2014/other'))
+        self.assertIsNotNone(url('news/:year/last', self.view).resolve('news/2014/last'))
 
     def test_year_month(self):
-        self.assertIsNone(url('news/:year/:month', 'view').resolve('news/2014/last'))
-        self.assertIsNone(url('news/:year/:month', 'view').resolve('news/2014/2012'))
+        self.assertIsNone(url('news/:year/:month', self.view).resolve('news/2014/last'))
+        self.assertIsNone(url('news/:year/:month', self.view).resolve('news/2014/2012'))
         for y in range(1970, 2025):
             for m in range(1, 12):
-                self.assertIsNotNone(url('news/:year/:month', 'view').resolve('news/%s/%s' % (y, m)))
+                self.assertIsNotNone(url('news/:year/:month', self.view).resolve('news/%s/%s' % (y, m)))
 
-        self.assertIsNotNone(url('news/:year/:month/last', 'view').resolve('news/2014/12/last'))
+        self.assertIsNotNone(url('news/:year/:month/last', self.view).resolve('news/2014/12/last'))
 
     def test_year_month_day(self):
-        self.assertIsNone(url('news/:year/:month/:day', 'view').resolve('news/2014/12/last'))
-        self.assertIsNone(url('news/:year/:month/:day', 'view').resolve('news/2014/2012/31'))
+        self.assertIsNone(url('news/:year/:month/:day', self.view).resolve('news/2014/12/last'))
+        self.assertIsNone(url('news/:year/:month/:day', self.view).resolve('news/2014/2012/31'))
         for y in range(2000, 2020):
             for m in range(1, 12):
                 for d in range(1, 31):
-                    self.assertIsNotNone(url('news/:year/:month/:day', 'view').resolve('news/%s/%s/%s' % (y, m, d)))
+                    self.assertIsNotNone(url('news/:year/:month/:day', self.view).resolve('news/%s/%s/%s' % (y, m, d)))
 
     def test_date(self):
-        self.assertIsNone(url('news/:date', 'view').resolve('news/2014/12/12'))
+        self.assertIsNone(url('news/:date', self.view).resolve('news/2014/12/12'))
         for y in range(2000, 2020):
             for m in range(1, 12):
                 for d in range(1, 31):
-                    self.assertIsNotNone(url('news/:date', 'view').resolve('news/%s-%s-%s' % (y, m, d)))
+                    self.assertIsNotNone(url('news/:date', self.view).resolve('news/%s-%s-%s' % (y, m, d)))
 
     def test_uuid(self):
         self.assertIsNone(url("invoice/:uuid", 'view').resolve('invoice/123123-123123-1231231-1231312-3-1312312-'))
         for i in range(1, 1000):
-            self.assertIsNotNone(url("invoice/:uuid", 'view').resolve('invoice/%s' % uuid.uuid4()))
+            self.assertIsNotNone(url("invoice/:uuid", self.view).resolve('invoice/%s' % uuid.uuid4()))
 
     def test_no_match_for_invalid_uuid(self):
         """
         UUID with invalid version.  The allowed versions are 1, 2, 4 and 5
         xxxxxxxx-xxxx-Vxxx-xxx-xxxxxxxxxxxx
+
+        https://github.com/phpdude/django-macros-url/pull/2
         """
-        self.assertIsNone(url("invoice/:uuid", 'view').resolve('invoice/3e41b04d-0978-9027-86c2-aa90c63ecb54'))
+        self.assertIsNone(url("invoice/:uuid", self.view).resolve('invoice/3e41b04d-0978-9027-86c2-aa90c63ecb54'))
