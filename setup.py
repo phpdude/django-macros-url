@@ -39,5 +39,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Software Development :: Pre-processors'
     ],
-    requires=['django']
+    install_requires=['django']
 )

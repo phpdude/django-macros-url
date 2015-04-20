@@ -1,3 +1,8 @@
+v0.1.7
+------
+
+setup.py fixes in requires.
+
 v0.1.6
 ------
 
