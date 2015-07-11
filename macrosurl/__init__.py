@@ -1,6 +1,6 @@
 import re
 
-VERSION = (0, 1, 7)
+VERSION = (0, 2, 0)
 
 _macros_library = {
     'id': r'\d+',
@@ -70,8 +70,14 @@ class MacroUrlPattern(object):
 def url(regex, view, kwargs=None, name=None, prefix=''):
     from django.conf.urls import url as baseurl
 
+    # Handle include()'s in views.
     end_dollar = True
     if isinstance(view, tuple) and len(view) == 3:
         end_dollar = False
+
+    # Auto-calling as_view on CBVs objects. Now you can omit as_view() in your views by default.
+    if isinstance(view, type):
+        if hasattr(view, 'as_view') and hasattr(view.as_view, '__call__'):
+            view = view.as_view()
 
     return baseurl(MacroUrlPattern(regex, end_dollar=end_dollar), view, kwargs=kwargs, name=name, prefix=prefix)

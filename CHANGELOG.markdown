@@ -1,3 +1,9 @@
+v0.2.0
+------
+
+Added auto-calling as_view on CBVs objects. Now you can omit as_view() in your views by default. 
+Have your code more clean then before ;-)
+
 v0.1.7
 ------
 

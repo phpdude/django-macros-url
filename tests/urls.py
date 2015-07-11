@@ -1,6 +1,5 @@
 import uuid
 
-from django.conf import settings
 from django.conf.urls import include
 from django.utils import unittest
 
@@ -83,9 +82,6 @@ class TestRegexUrlResolving(unittest.TestCase):
     def setUp(self):
         self.view = 'tests.views.view'
 
-        if not settings.configured:
-            settings.configure(USE_I18N=False)
-
     def test_id(self):
         self.assertIsNone(url('product/:id', self.view).resolve('product/test'))
         self.assertIsNotNone(url('product/:id', self.view).resolve('product/10'))
@@ -142,3 +138,18 @@ class TestRegexUrlResolving(unittest.TestCase):
         https://github.com/phpdude/django-macros-url/pull/2
         """
         self.assertIsNone(url("invoice/:uuid", self.view).resolve('invoice/3e41b04d-0978-9027-86c2-aa90c63ecb54'))
+
+    def test_cdv_as_view_calling(self):
+        from .views import CBVView
+
+        self.assertIsInstance(url("", CBVView).resolve('').func, type(lambda: 1))
+
+    def test_cdv_as_view_pass_manual(self):
+        from .views import CBVView
+
+        self.assertIsInstance(url("", CBVView.as_view()).resolve('').func, type(lambda: 1))
+
+    def test_cdv_as_view_pass_manual_params(self):
+        from .views import CBVView
+
+        self.assertIsInstance(url("", CBVView.as_view(x='test.html')).resolve('').func, type(lambda: 1))

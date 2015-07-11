@@ -1,0 +1,3 @@
+DEBUG = True
+SECRET_KEY = '123'
+USE_I18N=False

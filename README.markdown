@@ -1,4 +1,4 @@
-# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.1.6 - Routing must be simple as possible
+# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.2.0 - Routing must be simple as possible
 
 Django Macros Url makes it easy to write (and read) url patterns in your django applications by using macros.
 
@@ -61,6 +61,13 @@ Once Macros Url finished compile regex pattern, it makes normalization of it by 
 
 This makes your urls always very strong to adding any unexpected params into path.
 
+### Auto-calling as_view on CBV objects.
+
+Library check type of view and if view is type object with defined 'as_view' function, call this. This allow 
+you omit ".as_view()" calls in your urls.py files. But you can call this manual with params if you need.
+
+This feature help you to keep your urls.py files must clean as possible. I hope you like this feature!
+
 ### Examples
 
 Macro Url example urls.py file
@@ -68,7 +75,7 @@ Macro Url example urls.py file
 ```python
 from django.conf.urls import patterns
 from macrosurl import url
-
+from project.portal.views import IndexView
 
 urlpatterns = patterns(
     'yourapp.views',
@@ -79,6 +86,7 @@ urlpatterns = patterns(
     url('news/:year/:month/:day', 'news_date'),
     url('news/:slug', 'news_entry'),
     url('^order/:id$', 'order'),
+    url('^$', IndexView),
 )
 ```
 
@@ -87,6 +95,7 @@ Django way urls example
 ```python
 from django.conf.urls import patterns
 from macrosurl import url
+from project.portal.views import IndexView
 
 
 urlpatterns = patterns(
@@ -98,6 +107,7 @@ urlpatterns = patterns(
     url('^news/(?P<year>\d{4}>)/(?P<month>(0?([1-9])|10|11|12)>)/(?P<day>((0|1|2)?([1-9])|[1-3]0|31)>)$', 'news_date'),
     url('^news/(?P<slug>[\w-]+>)$', 'news_entry'),
     url('^order/(?P<id>\d+>)$', 'order'),
+    url('^$', IndexView.as_view()),
 )
 ```
 
