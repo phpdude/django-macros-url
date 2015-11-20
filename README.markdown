@@ -93,8 +93,7 @@ urlpatterns = patterns(
 Django way urls example
 
 ```python
-from django.conf.urls import patterns
-from macrosurl import url
+from django.conf.urls import patterns, url
 from project.portal.views import IndexView
 
 
