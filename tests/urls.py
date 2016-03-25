@@ -1,7 +1,12 @@
+import sys
 import uuid
 
 from django.conf.urls import include
-from django.utils import unittest
+
+if sys.version_info >= (2, 7):
+    import unittest
+else:
+    from django.utils import unittest
 
 from macrosurl import MacroUrlPattern, url
 
