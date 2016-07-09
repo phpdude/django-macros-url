@@ -1,8 +1,10 @@
-# [Django Macros Url](https://github.com/phpdude/django-macros-url/) v0.2.0 - Routing must be simple as possible
+# [Django Macros URL](https://github.com/phpdude/django-macros-url/) v0.2.0 - Routing must be simple as possible
 
-Django Macros Url makes it easy to write (and read) url patterns in your django applications by using macros.
+Django Macros URL makes it easy to write (and read) URL patterns in your Django applications by using macros.
 
-You can combine your prefixes with macro names with underscore, for example you can use macro `:slug` and `:product_slug`. They both will be compiled to same regex pattern with their group names of course. Multiple underscores accepted too.
+You can combine your prefixes with macro names with an underscore, for example, you can use a macro `:slug` 
+and `:product_slug`. They both will be compiled to same regex pattern with their group names of course. 
+Multiple underscores accepted too.
 
 [![Build Status](https://travis-ci.org/phpdude/django-macros-url.svg?branch=master)](https://travis-ci.org/phpdude/django-macros-url)
 
@@ -18,11 +20,11 @@ pk - \d+
 uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}
 ```
 
-If you want to offer more macros by default, you can fork and make pull request.
+If you want to offer more macros by default, you can fork and make a pull request.
 
 ### Installation
 
-You can install library with pypi like a charm.
+You can install the library with PyPI.
 
 ```
 pip install django-macros-url
@@ -30,11 +32,13 @@ pip install django-macros-url
 
 ### Usage
 
-Django Macros Urls used same way as django standart urls. You just import this and declare your patterns with macros.
+Django Macros URLs used the same way as Django standard URLs. You just import this and declare your 
+patterns with macros.
 
-Also you can register new macro (or maybe you want to replace default macro with your like regex pattern) with `macrosurl.register(macro, pattern)` method.
+Also, you can register new macro (or maybe you want to replace default macro with your like regex
+pattern) with `macrosurl.register(macro, pattern)` method.
 
-Example of registration.
+An example of registration.
 
 ```python
 import macrosurl
@@ -48,29 +52,30 @@ urlpatterns = patterns(
 )
 ```
 
-You free to register custom macro anywhere (i do it in main urls.py file). Macros Urls uses lazy initiazation. Macros will be compiled only on first request.
+Feel free to register custom macro anywhere (i do it in main urls.py file). Macros URLs uses lazy 
+initialization. Macros will be compiled only on the first request.
 
-### Urls normalization
+### URL normalization
 
-Once Macros Url finished compile regex pattern, it makes normalization of it by rules:
+Once Macros URL completed compile regex pattern, it makes normalization of it by rules:
 
 - Strip from left side all whitespace and ^
 - Strip from right side of pattern all whitespace and $
 - Add to left side ^
 - Add to right side $
 
-This makes your urls always very strong to adding any unexpected params into path.
+This makes your URLs always very strong to adding any unexpected params into a path.
 
-### Auto-calling as_view on CBV objects.
+### Auto-calling as_view() on CBV objects.
 
-Library check type of view and if view is type object with defined 'as_view' function, call this. This allow 
+Library check type of view and if a view is type object with defined 'as_view' function, call this. This allows 
 you omit ".as_view()" calls in your urls.py files. But you can call this manual with params if you need.
 
-This feature help you to keep your urls.py files must clean as possible. I hope you like this feature!
+This feature helps you to keep your urls.py files clean as possible. I hope you like this feature!
 
 ### Examples
 
-Macro Url example urls.py file
+Macros URL example urls.py file
 
 ```python
 from django.conf.urls import patterns
@@ -90,7 +95,7 @@ urlpatterns = patterns(
 )
 ```
 
-Django way urls example
+Standard Django urls example
 
 ```python
 from django.conf.urls import patterns
@@ -115,14 +120,11 @@ I think you understand the difference of ways :)
 
 #### Routing must be simple! ;-)
 
-I think real raw url regexp patterns needed in 1% case only. Prefer simple way to write (and read, this is important) fancy clean urls.
+I think raw URL regexp patterns needed in 1% case only. I prefer simple way to write (and read, this is 
+important) fancy clean URLs.
 
 ### Contributor
 
-Alexandr Shurigin (aka [phpdude](https://github.com/phpdude/))
+[Alexandr Shurigin](https://github.com/phpdude/)
 
-### Additionals
-
-Sorry for my english level :(
-
-You are welcome fix readme to good english by pull request! Thank you.
+You are welcome to contribute by PR.
