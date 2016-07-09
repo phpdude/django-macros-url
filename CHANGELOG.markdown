@@ -1,3 +1,8 @@
+v0.2.1
+------
+
+Added `django.setup()` for tests, because looks like now it is required. README.markdown fixes.
+
 v0.2.0
 ------
 

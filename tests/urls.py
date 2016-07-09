@@ -1,14 +1,19 @@
+import os
 import sys
 import uuid
 
+import django
 from django.conf.urls import include
+
+from macrosurl import MacroUrlPattern, url
 
 if sys.version_info >= (2, 7):
     import unittest
 else:
     from django.utils import unittest
 
-from macrosurl import MacroUrlPattern, url
+os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
+django.setup()
 
 
 class TestRegexCompilation(unittest.TestCase):
@@ -47,7 +52,7 @@ class TestRegexCompilation(unittest.TestCase):
                          '^product/(?P<pk>\d+)/(?P<product_pk>\d+)$')
         self.assertEqual(MacroUrlPattern('product/:pk/:product_pk/:news_pk').compiled,
                          '^product/(?P<pk>\d+)/(?P<product_pk>\d+)/(?P<news_pk>\d+)$')
-        
+
     def test_page(self):
         self.assertEqual(MacroUrlPattern('page/:page').compiled, '^page/(?P<page>\d+)$')
         self.assertEqual(MacroUrlPattern('product/:product_page').compiled, '^product/(?P<product_page>\d+)$')
@@ -78,11 +83,14 @@ class TestRegexCompilation(unittest.TestCase):
 
     def test_uid(self):
         self.assertEqual(MacroUrlPattern('invoice/:uuid').compiled,
-                         '^invoice/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})$')
+                         '^invoice/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?['
+                         'a-fA-F0-9]{12})$')
 
     def test_strongurl(self):
         self.assertEqual(MacroUrlPattern('orders/:date/:uuid/products/:slug/:variant_id').compiled,
-                         '^orders/(?P<date>\\d{4}-(0?([1-9])|10|11|12)-((0|1|2)?([1-9])|[1-3]0|31))/(?P<uuid>[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12})/products/(?P<slug>[\\w-]+)/(?P<variant_id>\\d+)$')
+                         '^orders/(?P<date>\\d{4}-(0?([1-9])|10|11|12)-((0|1|2)?([1-9])|[1-3]0|31))/(?P<uuid>['
+                         'a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{'
+                         '12})/products/(?P<slug>[\\w-]+)/(?P<variant_id>\\d+)$')
 
     # noinspection PyProtectedMember
     def test_includes_end(self):
