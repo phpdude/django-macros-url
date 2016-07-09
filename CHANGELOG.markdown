@@ -1,3 +1,8 @@
+v0.2.3
+------
+
+Development Status changed to "Development Status :: 5 - Production/Stable".
+
 v0.2.2
 ------
 

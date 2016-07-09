@@ -22,7 +22,7 @@ setup(
     test_suite='tests',
     long_description=read("README.markdown"),
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Environment :: Plugins',
         'Framework :: Django',
