@@ -1,3 +1,8 @@
+v0.2.2
+------
+
+Reverting tests back.
+
 v0.2.1
 ------
 

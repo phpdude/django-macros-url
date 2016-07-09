@@ -7,11 +7,7 @@ from django.conf.urls import include
 from macrosurl import MacroUrlPattern, url
 
 if sys.version_info >= (2, 7):
-    import django
     import unittest
-
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
-    django.setup()
 else:
     from django.utils import unittest
 
