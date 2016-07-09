@@ -7,8 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -16,31 +15,32 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Django-macros-url</h1>
-        <p class="header">Django Macros Url. Routing must be simple as possible</p>
+        <h1>Django-macros-url</h1>
+        <p>Django Macros Url. Routing must be simple as possible</p>
+
+        <p class="view"><a href="https://github.com/phpdude/django-macros-url">View the Project on GitHub <small>phpdude/django-macros-url</small></a></p>
+
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/phpdude/django-macros-url/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/phpdude/django-macros-url/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/phpdude/django-macros-url">View On GitHub</a></li>
+          <li><a href="https://github.com/phpdude/django-macros-url/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/phpdude/django-macros-url/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/phpdude/django-macros-url">View On <strong>GitHub</strong></a></li>
         </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/phpdude">phpdude</a></p>
-
-
       </header>
       <section>
         <h1>
-<a id="django-macros-url-v020---routing-must-be-simple-as-possible" class="anchor" href="#django-macros-url-v020---routing-must-be-simple-as-possible" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/phpdude/django-macros-url/">Django Macros Url</a> v0.2.0 - Routing must be simple as possible</h1>
+<a id="django-macros-url-v022---routing-must-be-simple-as-possible" class="anchor" href="#django-macros-url-v022---routing-must-be-simple-as-possible" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/phpdude/django-macros-url/">Django Macros URL</a> v0.2.2 - Routing must be simple as possible</h1>
 
-<p>Django Macros Url makes it easy to write (and read) url patterns in your django applications by using macros.</p>
+<p>Django Macros URL makes it easy to write (and read) URL patterns in your Django applications by using macros.</p>
 
-<p>You can combine your prefixes with macro names with underscore, for example you can use macro <code>:slug</code> and <code>:product_slug</code>. They both will be compiled to same regex pattern with their group names of course. Multiple underscores accepted too.</p>
+<p>You can combine your prefixes with macro names with an underscore, for example, you can use a macro <code>:slug</code> 
+and <code>:product_slug</code>. They both will be compiled to same regex pattern with their group names of course. 
+Multiple underscores accepted too.</p>
 
 <p><a href="https://travis-ci.org/phpdude/django-macros-url"><img src="https://travis-ci.org/phpdude/django-macros-url.svg?branch=master" alt="Build Status"></a></p>
 
 <h3>
-<a id="supported-macros-by-default" class="anchor" href="#supported-macros-by-default" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported macros by default</h3>
+<a id="supported-macros-by-default" class="anchor" href="#supported-macros-by-default" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported macros by default</h3>
 
 <pre><code>slug - [\w-]+
 year - \d{4}
@@ -48,29 +48,32 @@ month - (0?([1-9])|10|11|12)
 day - ((0|1|2)?([1-9])|[1-3]0|31)
 id - \d+
 pk - \d+
+page - \d+
 uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}
 </code></pre>
 
-<p>If you want to offer more macros by default, you can fork and make pull request.</p>
+<p>If you want to offer more macros by default, you can fork and make a pull request.</p>
 
 <h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
 
-<p>You can install library with pypi like a charm.</p>
+<p>You can install the library with PyPI.</p>
 
 <pre><code>pip install django-macros-url
 </code></pre>
 
 <h3>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
 
-<p>Django Macros Urls used same way as django standart urls. You just import this and declare your patterns with macros.</p>
+<p>Django Macros URLs used the same way as Django standard URLs. You just import this and declare your 
+patterns with macros.</p>
 
-<p>Also you can register new macro (or maybe you want to replace default macro with your like regex pattern) with <code>macrosurl.register(macro, pattern)</code> method.</p>
+<p>Also, you can register new macro (or maybe you want to replace default macro with your like regex
+pattern) with <code>macrosurl.register(macro, pattern)</code> method.</p>
 
-<p>Example of registration.</p>
+<p>An example of registration.</p>
 
-<div class="highlight highlight-python"><pre><span class="pl-k">import</span> macrosurl
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> macrosurl
 
 macrosurl.register(<span class="pl-s"><span class="pl-pds">'</span>myhash<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>[a-f0-9]<span class="pl-c1">{9}</span><span class="pl-pds">'</span></span>)
 
@@ -80,12 +83,13 @@ urlpatterns <span class="pl-k">=</span> patterns(
     macrosurl.url(<span class="pl-s"><span class="pl-pds">'</span>^news/:news_myhash/$<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>myhash_news<span class="pl-pds">'</span></span>),
 )</pre></div>
 
-<p>You free to register custom macro anywhere (i do it in main urls.py file). Macros Urls uses lazy initiazation. Macros will be compiled only on first request.</p>
+<p>Feel free to register custom macro anywhere (i do it in main urls.py file). Macros URLs uses lazy 
+initialization. Macros will be compiled only on the first request.</p>
 
 <h3>
-<a id="urls-normalization" class="anchor" href="#urls-normalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Urls normalization</h3>
+<a id="url-normalization" class="anchor" href="#url-normalization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>URL normalization</h3>
 
-<p>Once Macros Url finished compile regex pattern, it makes normalization of it by rules:</p>
+<p>Once Macros URL completed compile regex pattern, it makes normalization of it by rules:</p>
 
 <ul>
 <li>Strip from left side all whitespace and ^</li>
@@ -94,22 +98,22 @@ urlpatterns <span class="pl-k">=</span> patterns(
 <li>Add to right side $</li>
 </ul>
 
-<p>This makes your urls always very strong to adding any unexpected params into path.</p>
+<p>This makes your URLs always very strong to adding any unexpected params into a path.</p>
 
 <h3>
-<a id="auto-calling-as_view-on-cbv-objects" class="anchor" href="#auto-calling-as_view-on-cbv-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auto-calling as_view on CBV objects.</h3>
+<a id="auto-calling-as_view-on-cbv-objects" class="anchor" href="#auto-calling-as_view-on-cbv-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Auto-calling as_view() on CBV objects.</h3>
 
-<p>Library check type of view and if view is type object with defined 'as_view' function, call this. This allow 
+<p>Library check type of view and if a view is type object with defined 'as_view' function, call this. This allows 
 you omit ".as_view()" calls in your urls.py files. But you can call this manual with params if you need.</p>
 
-<p>This feature help you to keep your urls.py files must clean as possible. I hope you like this feature!</p>
+<p>This feature helps you to keep your urls.py files clean as possible. I hope you like this feature!</p>
 
 <h3>
-<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h3>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h3>
 
-<p>Macro Url example urls.py file</p>
+<p>Macros URL example urls.py file</p>
 
-<div class="highlight highlight-python"><pre><span class="pl-k">from</span> django.conf.urls <span class="pl-k">import</span> patterns
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> django.conf.urls <span class="pl-k">import</span> patterns
 <span class="pl-k">from</span> macrosurl <span class="pl-k">import</span> url
 <span class="pl-k">from</span> project.portal.views <span class="pl-k">import</span> IndexView
 
@@ -125,10 +129,9 @@ urlpatterns <span class="pl-k">=</span> patterns(
     url(<span class="pl-s"><span class="pl-pds">'</span>^$<span class="pl-pds">'</span></span>, IndexView),
 )</pre></div>
 
-<p>Django way urls example</p>
+<p>Standard Django urls example</p>
 
-<div class="highlight highlight-python"><pre><span class="pl-k">from</span> django.conf.urls <span class="pl-k">import</span> patterns
-<span class="pl-k">from</span> macrosurl <span class="pl-k">import</span> url
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> django.conf.urls <span class="pl-k">import</span> patterns, url
 <span class="pl-k">from</span> project.portal.views <span class="pl-k">import</span> IndexView
 
 
@@ -147,27 +150,24 @@ urlpatterns <span class="pl-k">=</span> patterns(
 <p>I think you understand the difference of ways :)</p>
 
 <h4>
-<a id="routing-must-be-simple--" class="anchor" href="#routing-must-be-simple--" aria-hidden="true"><span class="octicon octicon-link"></span></a>Routing must be simple! ;-)</h4>
+<a id="routing-must-be-simple--" class="anchor" href="#routing-must-be-simple--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Routing must be simple! ;-)</h4>
 
-<p>I think real raw url regexp patterns needed in 1% case only. Prefer simple way to write (and read, this is important) fancy clean urls.</p>
-
-<h3>
-<a id="contributor" class="anchor" href="#contributor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributor</h3>
-
-<p>Alexandr Shurigin (aka <a href="https://github.com/phpdude/">phpdude</a>)</p>
+<p>I think raw URL regexp patterns needed in 1% case only. I prefer simple way to write (and read, this is 
+important) fancy clean URLs.</p>
 
 <h3>
-<a id="additionals" class="anchor" href="#additionals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Additionals</h3>
+<a id="contributor" class="anchor" href="#contributor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributor</h3>
 
-<p>Sorry for my english level :(</p>
+<p><a href="https://github.com/phpdude/">Alexandr Shurigin</a></p>
 
-<p>You are welcome fix readme to good english by pull request! Thank you.</p>
+<p>You are welcome to contribute by PR.</p>
       </section>
       <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+        <p>This project is maintained by <a href="https://github.com/phpdude">phpdude</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
