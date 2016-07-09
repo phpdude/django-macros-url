@@ -17,6 +17,7 @@ month - (0?([1-9])|10|11|12)
 day - ((0|1|2)?([1-9])|[1-3]0|31)
 id - \d+
 pk - \d+
+page - \d+
 uuid - [a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[1345][a-fA-F0-9]{3}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}
 ```
 
@@ -98,8 +99,7 @@ urlpatterns = patterns(
 Standard Django urls example
 
 ```python
-from django.conf.urls import patterns
-from macrosurl import url
+from django.conf.urls import patterns, url
 from project.portal.views import IndexView
 
 

@@ -5,6 +5,7 @@ VERSION = (0, 2, 0)
 _macros_library = {
     'id': r'\d+',
     'pk': r'\d+',
+    'page': r'\d+',
     'slug': r'[\w-]+',
     'year': r'\d{4}',
     'month': r'(0?([1-9])|10|11|12)',
