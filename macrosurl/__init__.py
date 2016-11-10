@@ -1,6 +1,9 @@
 import re
+import warnings
+from distutils.version import StrictVersion
 
-VERSION = (0, 2, 3)
+VERSION = (0, 3, 0)
+DJANGO_VERSION = None
 
 _macros_library = {
     'id': r'\d+',
@@ -71,6 +74,13 @@ class MacroUrlPattern(object):
 def url(regex, view, kwargs=None, name=None, prefix=''):
     from django.conf.urls import url as baseurl
 
+    if DJANGO_VERSION is None:
+        global DJANGO_VERSION
+
+        from django import get_version
+
+        DJANGO_VERSION = get_version()
+
     # Handle include()'s in views.
     end_dollar = True
     if isinstance(view, tuple) and len(view) == 3:
@@ -81,4 +91,25 @@ def url(regex, view, kwargs=None, name=None, prefix=''):
         if hasattr(view, 'as_view') and hasattr(view.as_view, '__call__'):
             view = view.as_view()
 
-    return baseurl(MacroUrlPattern(regex, end_dollar=end_dollar), view, kwargs=kwargs, name=name, prefix=prefix)
+    if prefix:
+        warnings.warn(
+            'Support for prefix in macrosurl.url() is deprecated and '
+            'will be removed in version 0.4 (support for prefix was removed in Django 1.10). '
+            'Please update your source code.'
+            'In old Django versions prefix was used like "if prefix:view = prefix + \'.\' + view".'
+        )
+
+        view = prefix + '.' + view
+
+    if DJANGO_VERSION >= StrictVersion('1.10') and not callable(view) and not isinstance(view, (list, tuple)):
+        warnings.warn(
+            'View "%s" must be a callable in case of Django 1.10. '
+            'Macrosurl will try to load the view automatically (this behavior will be removed in version 0.4), but '
+            'please update your source code.' % view
+        )
+
+        from django.utils.module_loading import import_string
+
+        view = import_string(view)
+
+    return baseurl(MacroUrlPattern(regex, end_dollar=end_dollar), view, kwargs=kwargs, name=name)

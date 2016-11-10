@@ -1,3 +1,8 @@
+v0.3.0
+------
+
+Added support for Django 1.10 version.
+
 v0.2.3
 ------
 

@@ -1,4 +1,8 @@
 import os
+import warnings
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tests.settings")
+
 import sys
 import uuid
 
@@ -13,6 +17,9 @@ else:
 
 
 class TestRegexCompilation(unittest.TestCase):
+    def setUp(self):
+        warnings.filterwarnings("ignore")
+
     def test_nomacro(self):
         self.assertEqual(MacroUrlPattern('^$').compiled, '^$')
         self.assertEqual(MacroUrlPattern('^news/all/$').compiled, '^news/all/$')
@@ -92,12 +99,14 @@ class TestRegexCompilation(unittest.TestCase):
     def test_includes_end(self):
         self.assertEqual(str(url('users/:slug', include('tests'))._regex), '^users/(?P<slug>[\\w-]+)')
         self.assertEqual(str(url('users/:slug', include('tests', namespace='1'))._regex), '^users/(?P<slug>[\\w-]+)')
-        self.assertEqual(str(url('users/:slug', 'tests')._regex), '^users/(?P<slug>[\\w-]+)$')
+        self.assertEqual(str(url('users/:slug', 'tests.views.view')._regex), '^users/(?P<slug>[\\w-]+)$')
 
 
 class TestRegexUrlResolving(unittest.TestCase):
     def setUp(self):
         self.view = 'tests.views.view'
+
+        warnings.filterwarnings("ignore")
 
     def test_id(self):
         self.assertIsNone(url('product/:id', self.view).resolve('product/test'))
@@ -143,7 +152,7 @@ class TestRegexUrlResolving(unittest.TestCase):
                     self.assertIsNotNone(url('news/:date', self.view).resolve('news/%s-%s-%s' % (y, m, d)))
 
     def test_uuid(self):
-        self.assertIsNone(url("invoice/:uuid", 'view').resolve('invoice/123123-123123-1231231-1231312-3-1312312-'))
+        self.assertIsNone(url("invoice/:uuid", self.view).resolve('invoice/123123-123123-1231231-1231312-3-1312312-'))
         for i in range(1, 1000):
             self.assertIsNotNone(url("invoice/:uuid", self.view).resolve('invoice/%s' % uuid.uuid4()))
 
