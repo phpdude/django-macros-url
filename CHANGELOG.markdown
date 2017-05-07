@@ -1,3 +1,8 @@
+v0.3.1
+------
+
+Fix for https://github.com/phpdude/django-macros-url/issues/8.
+
 v0.3.0
 ------
 

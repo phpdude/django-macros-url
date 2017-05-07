@@ -2,7 +2,7 @@ import re
 import warnings
 from distutils.version import StrictVersion
 
-VERSION = (0, 3, 0)
+VERSION = (0, 3, 1)
 DJANGO_VERSION = None
 
 _macros_library = {
@@ -73,10 +73,9 @@ class MacroUrlPattern(object):
 
 def url(regex, view, kwargs=None, name=None, prefix=''):
     from django.conf.urls import url as baseurl
+    global DJANGO_VERSION
 
     if DJANGO_VERSION is None:
-        global DJANGO_VERSION
-
         from django import get_version
 
         DJANGO_VERSION = get_version()
