@@ -2,8 +2,7 @@ import re
 import warnings
 from distutils.version import StrictVersion
 
-VERSION = (0, 3, 1)
-DJANGO_VERSION = None
+VERSION = (0, 4, 0)
 
 _macros_library = {
     'id': r'\d+',
@@ -75,8 +74,6 @@ def url(regex, view, kwargs=None, name=None, prefix=''):
     from django.conf.urls import url as baseurl
     from django import get_version
 
-    DJANGO_VERSION = get_version()
-
     # Handle include()'s in views.
     end_dollar = True
     if isinstance(view, tuple) and len(view) == 3:
@@ -97,7 +94,7 @@ def url(regex, view, kwargs=None, name=None, prefix=''):
 
         view = prefix + '.' + view
 
-    if DJANGO_VERSION >= StrictVersion('1.10') and not callable(view) and not isinstance(view, (list, tuple)):
+    if get_version() >= StrictVersion('1.10') and not callable(view) and not isinstance(view, (list, tuple)):
         warnings.warn(
             'View "%s" must be a callable in case of Django 1.10. '
             'Macrosurl will try to load the view automatically (this behavior will be removed in version 0.4), but '

@@ -1,3 +1,16 @@
+v0.4.0
+------
+
+Added Py3.{5,6} & Django 1.11. Removed Py2.6 & Django <1.8 (#9)
+* Quick fix for the DJANGO_VERSION error when using Python >= 3.6 (version calculation caching removed because it is not a performance penalty, urls are lazy and are calculated only once per an app start).
+
+* Added Py3.{5,6} & Django 1.11. Removed Py2.6 & Django <1.8
+
+The latest Django LTS is 1.11. Its ok to support up to the "LTS -1" (1.8) only.
+The next Django LTS is 2.0, and will be Py3k only, so lets start testing with Py3k!
+
+* Mark as Py3k compat on setup.py
+
 v0.3.1
 ------
 
