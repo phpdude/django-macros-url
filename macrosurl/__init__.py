@@ -73,12 +73,9 @@ class MacroUrlPattern(object):
 
 def url(regex, view, kwargs=None, name=None, prefix=''):
     from django.conf.urls import url as baseurl
-    global DJANGO_VERSION
+    from django import get_version
 
-    if DJANGO_VERSION is None:
-        from django import get_version
-
-        DJANGO_VERSION = get_version()
+    DJANGO_VERSION = get_version()
 
     # Handle include()'s in views.
     end_dollar = True
